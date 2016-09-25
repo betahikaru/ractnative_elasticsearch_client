@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
+  TabBarIOS,
   ScrollView,
   ListView,
   TextInput,
@@ -16,6 +17,46 @@ import {
 } from 'react-native';
 
 class AwesomeProject2 extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedTab: 'SearchTab',
+    }
+  }
+  render() {
+    return (
+      <TabBarIOS
+        unselectedTintColor="yellow"
+        tintColor="white"
+        barTintColor="darkslateblue">
+        <TabBarIOS.Item
+          systemIcon="search"
+          selected={this.state.selectedTab === 'SearchTab'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'SearchTab',
+            });
+          }}>
+          <SearchTab />
+        </TabBarIOS.Item>
+        <TabBarIOS.Item
+          systemIcon="search"
+          selected={this.state.selectedTab === 'SearchTab2'}
+          onPress={() => {
+            this.setState({
+              selectedTab: 'SearchTab2',
+            });
+          }}>
+          <SearchTab />
+        </TabBarIOS.Item>
+      </TabBarIOS>
+    );
+  }
+    /*
+    
+*/
+}
+class SearchTab extends Component {
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
